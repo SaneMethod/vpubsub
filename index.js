@@ -129,9 +129,10 @@ class Vent{
     /**
      * As per on, but unsubscribing immediately before triggering the event handler, such
      * that the event handler is only triggered once by a given event.
-     * @param channelEvent
-     * @param handler
-     * @param context
+     * @param {string} channelEvent
+     * @param {function} handler
+     * @param {object=} context
+     * @returns {string}
      */
     once(channelEvent, handler, context){
         const token = this.on(channelEvent, () => {
@@ -145,8 +146,8 @@ class Vent{
      * only the handler associated with that token. If no token is provided,
      * every handler in the eventQueue for the specified channel/event combination
      * will be removed.
-     * @param channelEvent
-     * @param token
+     * @param {string} channelEvent
+     * @param {string=} token
      */
     off(channelEvent, token){
         const {currentChannel, event, eventQueue} = this._getEventQueue(channelEvent);
@@ -213,6 +214,8 @@ function install(app){
             }
         }
     });
+
+    return app;
 }
 
 export default vent;
