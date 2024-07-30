@@ -1,6 +1,6 @@
 {
     "name": "vpubsub",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "type": "module",
     "description": "Easy to use Pub/Sub broker, with built-in support for Vue 3.",
     "main": "dist/vpubsub.js",
