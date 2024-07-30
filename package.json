@@ -15,6 +15,8 @@
     ],
     "author": "sanemethod",
     "license": "MPL-2.0",
+    "homepage": "https://github.com/SaneMethod/vpubsub/blob/master/ReadMe.md",
+    "repository": "https://github.com/SaneMethod/vpubsub",
     "peerDependencies": {
         "vue": "3.x",
         "lodash-es": "4.x"
