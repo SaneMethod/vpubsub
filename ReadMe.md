@@ -1,10 +1,8 @@
 # VPubSub
 
-## Easy-to-use Pub/Sub Broker
+## Easy-to-use Pub/Sub Broker (With built-in Vue 3.x plugin support)
 
-### (With built-in Vue 3.x plugin support)
-
-#### What is It?
+### What is It?
 
 VPubSub implements the [Publish/Subscribe pattern](https://en.wikipedia.org/wiki/Publish%E2%80%93subscribe_pattern) allowing you to `subscribe` to messages of interest, and `publish` those same messages from elsewhere within your application - your subscribers then receive these messages (via callback functions).
 
@@ -18,11 +16,11 @@ If you know pub/sub is what you need, or you're considering it, read on!
 
 
 
-#### How Does It Work?
+### How Does It Work?
 
 Let's look at some common and uncommon use-cases, both in general, and then including Vue - both with the [Options API](https://vuejs.org/api/#options-api), and the [Composition API](https://vuejs.org/api/#composition-api):
 
-##### Subscribe to a single event
+#### Subscribe to a single event
 
 ```js
 import {vent} from "vpubsub";
@@ -43,7 +41,7 @@ vent.on(EVENTS.PLAYER.START, (arg1, arg2, ...rst) => {
 vent.trigger(EVENTS.PLAYER.START, 'event', 'args', 40, 'or', 'as', 'many as you like',)
 ```
 
-##### Subscribe to all events on a channel
+#### Subscribe to all events on a channel
 
 Did you notice the `event.channel` structure of the event name in our example above? All events within VPubSub belong to a `channel` - a way of organizing events together. This also allows us to perform operations on a channel-basis, like subscribe to all events for that channel.
 
@@ -73,7 +71,7 @@ vent.on('*.player', (arg1, arg2, ..., channelEvent) => {
 });
 ```
 
-##### Subscribe to all events
+#### Subscribe to all events
 
 While not recommended, you can add a subscriber to all events by subscribing to the wildcard `*` event on the wildcard `*` channel. This could be used for debugging events, as you'll be able to see all traffic across the bus:
 
@@ -87,7 +85,7 @@ vent.on('*.*', (arg1, arg2, ..., channelEvent) => {
 });
 ```
 
-##### Requests
+#### Requests
 
 In addition to one-way event publishing, we can also perform two-way event *messaging* by making requests. Requests always return a promise that resolves with the responses from all subscribers.
 
@@ -120,11 +118,11 @@ The same special wildcard channel event and global wildcard that you can use wit
 
 
 
-#### How Does It Work With Vue?
+### How Does It Work With Vue?
 
 VPubSub comes with built-in support for using it as a plugin with Vue 3. First, let's install it, and then we'll take a look at using it with the Options or Composition APIs.
 
-##### Installation
+#### Installation
 
 Let's create a `plugins/vent.js` file, that looks like this:
 
@@ -162,7 +160,7 @@ const vue = createApp(App);
 vue.use(vent);
 ```
 
-##### Options API
+#### Options API
 
 When installed as a Vue plugin, VPubSub adds a new element to the Options API, the `vent` option. This should be an object similar to `methods` or `computed` in your component, that has the events as the key and *either* a direct function as the subscriber, or the name of a method in your component as a string.
 
@@ -214,7 +212,7 @@ export default {
 
 All events specified in the `vent` object are bound to the context of the component on `mounted`, and unbound during `beforeUnmount`. This means that you can use `this` to refer to the context of the component within these functions and access `data`, `props`, computed properties, etc.; and that the listeners will be safely bound and unbound automagically for you without any need to manually subscribe or unsubscribe.
 
-##### Composition API
+#### Composition API
 
 Using VPubSub with the Composition API is similar to using it outside of Vue, and can be used in a `setup` script tag in single-file components.
 
@@ -244,13 +242,13 @@ Using VPubSub with the Composition API is similar to using it outside of Vue, an
 
 
 
-##### What are my import options?
+#### What are my import options?
 
 As for imports, you can choose between importing from `vpubsub`, which expects `lodash-es` as a peer dependency but doesn't bake in the parts it needs; or you can import from `vpubsub.full` which bakes in just those bits of `lodash-es` that it relies on.
 
 
 
-##### This is pretty neat! I'd like to use it in my project.
+#### This is pretty neat! I'd like to use it in my project.
 
 Go for it. 👍
 
