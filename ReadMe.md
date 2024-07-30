@@ -244,7 +244,7 @@ Using VPubSub with the Composition API is similar to using it outside of Vue, an
 
 #### What are my import options?
 
-As for imports, you can choose between importing from `vpubsub`, which expects `lodash-es` as a peer dependency but doesn't bake in the parts it needs; or you can import from `vpubsub.full` which bakes in just those bits of `lodash-es` that it relies on.
+As for imports, you can choose between importing from `vpubsub`, which expects `lodash-es` as a peer dependency but doesn't bake in the parts it needs; or you can import from `"vpubsub/dist/vpubsub.full.js"` which bakes in just those bits of `lodash-es` that it relies on.
 
 
 
