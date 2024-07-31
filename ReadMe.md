@@ -164,6 +164,8 @@ vue.use(vent);
 
 When installed as a Vue plugin, VPubSub adds a new element to the Options API, the `vent` option. This should be an object similar to `methods` or `computed` in your component, that has the events as the key and *either* a direct function as the subscriber, or the name of a method in your component as a string.
 
+You also gain access to the `vent` singleton as a globally available component property, via `$vent`; you can reference it from within any component via `this.$vent`.
+
 For example:
 
 ```vue
@@ -204,7 +206,22 @@ export default {
     		// Because the `vent` events are bound to the component, you can use
     		// this to get props, data, computed, etc. of the component.
     		console.log(this.vprop);
-    	}
+    	},
+        /**
+         * Trigger an event as a result of doing something.
+         */
+        doSomething(){
+            this.$vent.trigger(EVENTS.PLAYER.END);
+        },
+        /**
+         * Request replies from subscribers.
+         */
+        getSomething(){
+            this.$vent.request(EVENTS.PLAYER.END).then((res) => {
+                const [resp] = res;
+                console.log(resp);
+            });
+        },
     },
 };
 </script>
