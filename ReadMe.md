@@ -27,8 +27,8 @@ import {vent} from "vpubsub";
 
 const EVENTS = {
     PLAYER:{
-        START:'start.player',
-        END:'end.player',
+        START:'player.start',
+        END:'player.end',
     }
 };
 
@@ -43,15 +43,15 @@ vent.trigger(EVENTS.PLAYER.START, 'event', 'args', 40, 'or', 'as', 'many as you 
 
 #### Subscribe to all events on a channel
 
-Did you notice the `event.channel` structure of the event name in our example above? All events within VPubSub belong to a `channel` - a way of organizing events together. This also allows us to perform operations on a channel-basis, like subscribe to all events for that channel.
+Did you notice the `channel.event` structure of the event name in our example above? All events within VPubSub belong to a `channel` - a way of organizing events together. This also allows us to perform operations on a channel-basis, like subscribe to all events for that channel.
 
 ```js
 import {vent} from "vpubsub";
 
 const EVENTS = {
     PLAYER:{
-        START:'start.player',
-        END:'end.player',
+        START:'player.start',
+        END:'player.end',
     }
 };
 
@@ -61,9 +61,9 @@ const EVENTS = {
  */
 vent.on('*.player', (arg1, arg2, ..., channelEvent) => {
     switch(channelEvent){
-        case 'start.player':
+        case EVENTS.PLAYER.START:
             break;
-        case 'end.player':
+        case EVENTS.PLAYER.END:
             break;
         default:
             break;
@@ -94,8 +94,8 @@ import {vent} from "vpubsub";
 
 const EVENTS = {
     PLAYER:{
-        START:'start.player',
-        END:'end.player',
+        START:'player.start',
+        END:'player.end',
     }
 };
 
@@ -175,8 +175,8 @@ For example:
 <script lang="js">
 const EVENTS = {
 	PLAYER:{
-		START:'start.player',
-		END:'end.player',
+		START:'player.start',
+		END:'player.end',
 	}
 };
 
