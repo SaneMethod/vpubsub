@@ -50,10 +50,10 @@ class Vent{
 
     /**
      * Trigger the given event on the given channel, passing any additional arguments to the event handler.
-     * Note that you can subscribe on a single event ('event' - with the implicit default channel, or 'event.channel');
-     * or you can subscribe on all events for a channel ('*.channel', with '*' getting the implicit default channel),
-     * or you can subscribe to all events ('*.*'). You can not, however, subscribe for a certain event on all channels
-     * (e.g. 'event.*') - doing so will just subscribe you to the 'event' on the '*' channel, which is the same
+     * Note that you can subscribe on a single event ('event' - with the implicit default channel, or 'channel.event');
+     * or you can subscribe on all events for a channel ('channel.*', with '*' getting the implicit default channel),
+     * or you can subscribe to all events ('*.*'). You cannot subscribe for a certain event on all channels
+     * (e.g. '*.event') - doing so will just subscribe you to the 'event' on a '*' channel, which is the same
      * as registering for a normal event on any channel.
      * @param {string} channelEvent
      * @param {...any} args

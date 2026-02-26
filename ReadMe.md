@@ -59,7 +59,7 @@ const EVENTS = {
  * Subscribers to wildcard events will receive the channelEvent as the last argument,
  * allowing for disambiguation within the handler.
  */
-vent.on('*.player', (arg1, arg2, ..., channelEvent) => {
+vent.on('player.*', (arg1, arg2, ..., channelEvent) => {
     switch(channelEvent){
         case EVENTS.PLAYER.START:
             break;
@@ -81,6 +81,19 @@ While not recommended, you can add a subscriber to all events by subscribing to 
  * when subscribing to all events.
  */
 vent.on('*.*', (arg1, arg2, ..., channelEvent) => {
+    console.log(arg1, channelEvent);
+});
+```
+
+Specifying only `*` will not subscribe to all events, but rather to all events on the implicit default channel - equivalent to specifying `default.*`.
+```js
+/**
+ * This will not subscribe to all events,
+ * but only to all events on the implicit `default` channel - 
+ * that is, the channel used whenever you don't specify a channel.
+ * It's equivalent to specifying `default.*`.
+ */
+vent.on('*', (arg1, arg2, ..., channelEvent) => {
     console.log(arg1, channelEvent);
 });
 ```
